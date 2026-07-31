@@ -1,0 +1,25 @@
+Встановлення cert-manager через helm:
+
+helm install cert-manager \
+  oci://quay.io/jetstack/charts/cert-manager \
+  --version v1.21.0 \
+  --namespace cert-manager \
+  --create-namespace \
+  --set crds.enabled=true
+
+Дочекаємося запуску:
+kubectl get pods -n cert-manager -w
+
+Перевіряємо Deployment:
+kubectl get deployments -n cert-manager
+
+Створюємо Production ClusterIssuer:
+nano clusterissuer-prod.yaml
+
+запуск: kubectl apply -f clusterissuer-prod.yaml
+перевірка: kubectl get clusterissuer
+
+Підключаємо сертифікат до Podinfo
+
+відкриваєм: nano ingress-ssl.yaml
+запускаєм: kubectl apply -f ingress-ssl
