@@ -1,0 +1,19 @@
+Після підключення до bastion-сервера перевірити доступність Kubernetes API:
+kubectl cluster-info
+
+Перевірити доступні ноди:
+kubectl get nodes
+
+Перевірити стан системних компонентів:
+kubectl get pods -n kube-system
+
+Після перевірки роботи кластера можемо розпочати зі створення Namespace для свого застосунку
+
+Наприклад для Podinfo:
+kubectl create namespace podinfo
+
+Перевірка
+kubectl get ns
+
+Створимо Deployment:
+nano deployment.yaml
